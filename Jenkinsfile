@@ -18,25 +18,25 @@ pipeline {
 			}
     }
 
-	stage('Build') { 
-            steps { 
-               withDockerRegistry([credentialsId: "dockerlogin", url: "http://ec2-35-92-154-37.us-west-2.compute.amazonaws.com:8081/manage/credentials/store/system/domain/_/credential/dockerlogin/"]) {
-                 script{
-                 app =  docker.build("asg")
-                 }
-               }
-            }
-    }
+//	stage('Build') { 
+//           steps { 
+//              withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
+//                script{
+//                app =  docker.build("asg")
+//                 }
+//               }
+//            }
+//    }
 
-	stage('Push') {
-            steps {
-                script{
-                    docker.withRegistry('https://982534361106.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:aws-credentials') {
-                    app.push("latest")
-                    }
-                }
-            }
-    	}
+//	stage('Push') {
+//            steps {
+//                script{
+//                    docker.withRegistry('https://982534361106.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:aws-credentials') {
+//                    app.push("latest")
+//                   }
+//                }
+//            }
+//    	}
 	   
 // 	stage('Kubernetes Deployment of ASG Bugg Web Application') {
 // 	   steps {
